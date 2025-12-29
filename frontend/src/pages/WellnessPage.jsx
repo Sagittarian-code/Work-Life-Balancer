@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Heart, Sparkles } from 'lucide-react';
 import { Card } from '../components/ui/card';
 import { BreathingExercise } from '../components/BreathingExercise';
+import { AmbientSounds } from '../components/AmbientSounds';
 import { Button } from '../components/ui/button';
 import { toast } from 'sonner';
 
