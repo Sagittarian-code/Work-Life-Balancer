@@ -56,40 +56,40 @@
   }
 
   .dark {
-    --background: 270 30% 12%;   /* Dark purple background */
-    --foreground: 150 40% 90%;   /* Light mint text */
+    --background: 200 45% 8%;    /* Deep ocean night */
+    --foreground: 180 40% 90%;   /* Soft aqua text */
     
-    --card: 270 25% 16%;
-    --card-foreground: 150 40% 90%;
+    --card: 200 40% 12%;
+    --card-foreground: 180 40% 90%;
     
-    --popover: 270 25% 16%;
-    --popover-foreground: 150 40% 90%;
+    --popover: 200 40% 12%;
+    --popover-foreground: 180 40% 90%;
     
-    --primary: 270 70% 65%;      /* Brighter lavender for dark */
-    --primary-foreground: 270 30% 15%;
+    --primary: 195 80% 55%;      /* Bright ocean blue */
+    --primary-foreground: 200 45% 10%;
     
-    --secondary: 150 50% 55%;    /* Adjusted mint */
-    --secondary-foreground: 270 30% 15%;
+    --secondary: 160 60% 50%;    /* Forest green */
+    --secondary-foreground: 200 45% 10%;
     
-    --muted: 270 20% 25%;
-    --muted-foreground: 270 15% 70%;
+    --muted: 200 30% 20%;
+    --muted-foreground: 180 25% 65%;
     
-    --accent: 150 60% 60%;
-    --accent-foreground: 270 30% 15%;
+    --accent: 175 70% 55%;
+    --accent-foreground: 200 45% 10%;
     
     --destructive: 0 70% 60%;
     --destructive-foreground: 0 0% 100%;
     
-    --success: 150 60% 50%;
+    --success: 145 65% 50%;
     --success-foreground: 0 0% 100%;
     
-    --border: 270 20% 25%;
-    --input: 270 20% 25%;
-    --ring: 270 70% 65%;
+    --border: 200 30% 20%;
+    --input: 200 30% 20%;
+    --ring: 195 80% 55%;
 
-    --gradient-calm: linear-gradient(135deg, hsl(270 60% 40%), hsl(150 50% 35%));
-    --gradient-hero: linear-gradient(180deg, hsl(270 30% 12%), hsl(270 25% 18%));
-    --gradient-card: linear-gradient(135deg, hsl(270 25% 16%), hsl(270 20% 20%));
+    --gradient-calm: linear-gradient(135deg, hsl(195 70% 40%), hsl(160 60% 35%));
+    --gradient-hero: linear-gradient(180deg, hsl(200 45% 8%), hsl(200 40% 12%));
+    --gradient-card: linear-gradient(135deg, hsl(200 40% 12%), hsl(200 35% 15%));
     
     --shadow-soft: 0 4px 20px -5px hsl(0 0% 0% / 0.3);
     --shadow-medium: 0 8px 30px -8px hsl(0 0% 0% / 0.4);
