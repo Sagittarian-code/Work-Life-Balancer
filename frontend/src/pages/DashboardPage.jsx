@@ -82,16 +82,16 @@ export default function DashboardPage() {
       </motion.div>
 
       {/* Stats Grid */}
-      <motion.div variants={item} className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="p-6 shadow-soft hover:shadow-medium transition-smooth">
+      <motion.div variants={item} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card className="p-4 md:p-6 shadow-soft hover:shadow-medium transition-smooth">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-muted-foreground">Mood</span>
-            <Smile className="w-5 h-5 text-primary" />
+            <Smile className="w-4 h-4 md:w-5 md:h-5 text-primary" />
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-3xl">{getMoodEmoji()}</span>
+            <span className="text-2xl md:text-3xl">{getMoodEmoji()}</span>
             <div>
-              <p className="text-2xl font-bold text-foreground capitalize">{currentMood.mood}</p>
+              <p className="text-xl md:text-2xl font-bold text-foreground capitalize">{currentMood.mood}</p>
               <p className="text-xs text-muted-foreground">Energy: {currentMood.energy}%</p>
             </div>
           </div>
