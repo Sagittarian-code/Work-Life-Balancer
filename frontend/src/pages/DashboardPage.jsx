@@ -105,12 +105,12 @@ export default function DashboardPage() {
           </Button>
         </Card>
 
-        <Card className="p-6 shadow-soft hover:shadow-medium transition-smooth">
+        <Card className="p-4 md:p-6 shadow-soft hover:shadow-medium transition-smooth">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-muted-foreground">Today's Tasks</span>
-            <Calendar className="w-5 h-5 text-secondary" />
+            <Calendar className="w-4 h-4 md:w-5 md:h-5 text-secondary" />
           </div>
-          <p className="text-3xl font-bold text-foreground">{todayTasks.length}</p>
+          <p className="text-2xl md:text-3xl font-bold text-foreground">{todayTasks.length}</p>
           <p className="text-xs text-muted-foreground mt-1">
             {completedToday} completed
           </p>
@@ -119,23 +119,23 @@ export default function DashboardPage() {
           )}
         </Card>
 
-        <Card className="p-6 shadow-soft hover:shadow-medium transition-smooth">
+        <Card className="p-4 md:p-6 shadow-soft hover:shadow-medium transition-smooth">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-muted-foreground">Upcoming</span>
-            <TrendingUp className="w-5 h-5 text-accent" />
+            <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-accent" />
           </div>
-          <p className="text-3xl font-bold text-foreground">{upcomingTasks}</p>
+          <p className="text-2xl md:text-3xl font-bold text-foreground">{upcomingTasks}</p>
           <p className="text-xs text-muted-foreground mt-1">
             tasks pending
           </p>
         </Card>
 
-        <Card className="p-6 shadow-soft hover:shadow-medium transition-smooth">
+        <Card className="p-4 md:p-6 shadow-soft hover:shadow-medium transition-smooth">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-muted-foreground">Completed</span>
-            <CheckCircle className="w-5 h-5 text-success" />
+            <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-success" />
           </div>
-          <p className="text-3xl font-bold text-foreground">
+          <p className="text-2xl md:text-3xl font-bold text-foreground">
             {tasks.filter((t) => t.status === 'completed').length}
           </p>
           <p className="text-xs text-muted-foreground mt-1">
