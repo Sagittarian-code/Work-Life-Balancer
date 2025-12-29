@@ -72,7 +72,7 @@ export const BreathingExercise = () => {
         </div>
 
         {/* Breathing Circle Container */}
-        <div className="relative flex items-center justify-center" style={{ minHeight: '400px' }}>
+        <div className="relative flex items-center justify-center" style={{ minHeight: '400px', backgroundColor: 'hsl(var(--muted) / 0.3)', borderRadius: '1rem' }}>
           {/* Breathing Circle with Glow */}
           <motion.div
             animate={{
@@ -87,9 +87,8 @@ export const BreathingExercise = () => {
               width: '200px',
               height: '200px',
               borderRadius: '50%',
-              background: `radial-gradient(circle at center, ${currentPhase.color}, ${currentPhase.color}dd)`,
-              boxShadow: `0 0 80px ${currentPhase.color}aa, 0 0 120px ${currentPhase.color}66, inset 0 0 60px ${currentPhase.color}33`,
-              filter: 'blur(1px)',
+              background: `radial-gradient(circle at center, ${currentPhase.color}ee, ${currentPhase.color}aa)`,
+              boxShadow: `0 0 100px ${currentPhase.color}, 0 0 150px ${currentPhase.color}88, inset 0 0 80px ${currentPhase.color}44`,
             }}
           />
 
@@ -107,16 +106,16 @@ export const BreathingExercise = () => {
               width: '180px',
               height: '180px',
               borderRadius: '50%',
-              background: `linear-gradient(135deg, ${currentPhase.color}ee, ${currentPhase.color}bb)`,
-              boxShadow: `0 4px 30px ${currentPhase.color}77`,
+              background: `linear-gradient(135deg, ${currentPhase.color}, ${currentPhase.color}dd)`,
+              boxShadow: `0 8px 40px ${currentPhase.color}aa`,
             }}
           />
 
           {/* Outer Ring */}
           <motion.div
             animate={{
-              scale: getCircleScale() * 1.1,
-              opacity: isActive ? [0.3, 0.6, 0.3] : 0.3,
+              scale: getCircleScale() * 1.15,
+              opacity: isActive ? [0.4, 0.7, 0.4] : 0.4,
             }}
             transition={{
               duration: 2,
@@ -125,11 +124,11 @@ export const BreathingExercise = () => {
             }}
             className="absolute"
             style={{
-              width: '240px',
-              height: '240px',
+              width: '260px',
+              height: '260px',
               borderRadius: '50%',
-              border: `2px solid ${currentPhase.color}`,
-              boxShadow: `0 0 30px ${currentPhase.color}55`,
+              border: `3px solid ${currentPhase.color}`,
+              boxShadow: `0 0 40px ${currentPhase.color}77`,
             }}
           />
 
@@ -142,16 +141,17 @@ export const BreathingExercise = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.3 }}
-                className="text-center"
+                className="text-center px-4"
               >
-                <p className="text-3xl font-bold text-white drop-shadow-lg mb-2">
+                <p className="text-3xl font-bold drop-shadow-lg mb-2" style={{ color: 'hsl(var(--foreground))' }}>
                   {currentPhase.text}
                 </p>
                 {isActive && (
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="text-xl text-white/90 drop-shadow-md"
+                    className="text-xl drop-shadow-md"
+                    style={{ color: 'hsl(var(--muted-foreground))' }}
                   >
                     {Math.ceil((currentPhase.duration * (1 - progress / 100)) / 1000)}s
                   </motion.p>
