@@ -48,9 +48,9 @@ export default function AuthPage() {
         {/* Logo & Title */}
         <div className="text-center mb-8">
           <motion.img
-            src="https://static.prod-images.emergentagent.com/jobs/bf2943b7-3896-49fc-9373-bd8f9077dc23/images/8a48c7c5e2c9ae63d9d316a9c2240faca674b0a4774c9bdaa8e9268c34d05a2c.png"
+            src="https://customer-assets.emergentagent.com/job_balance-buddy-23/artifacts/udn3mqfq_WhatsApp%20Image%202025-12-29%20at%2018.16.18_c1681a27.jpg"
             alt="Work-Life Balancer"
-            className="w-24 h-24 mx-auto mb-4"
+            className="w-24 h-24 mx-auto mb-4 rounded-full object-cover shadow-medium"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: 'spring', stiffness: 200, damping: 15 }}
