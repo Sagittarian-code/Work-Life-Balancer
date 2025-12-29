@@ -71,7 +71,7 @@ export const Layout = () => {
         <div className="p-4 border-t border-border space-y-2">
           <div className="px-3 py-2 bg-muted rounded-lg">
             <p className="text-sm font-medium text-foreground">
-              {isGuest ? 'Guest User' : user?.name || 'User'}
+              {user?.name || (isGuest ? 'Guest User' : 'User')}
             </p>
             <p className="text-xs text-muted-foreground">
               {isGuest ? 'Temporary Session' : user?.email || ''}
