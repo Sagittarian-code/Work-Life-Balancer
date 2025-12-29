@@ -57,6 +57,15 @@ export default function WellnessPage() {
         <BreathingExercise />
       </div>
 
+      {/* Ambient Sounds */}
+      <div>
+        <h2 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
+          <Sparkles className="w-5 h-5 text-accent" />
+          Ambient Sounds
+        </h2>
+        <AmbientSounds />
+      </div>
+
       {/* Other Activities */}
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
