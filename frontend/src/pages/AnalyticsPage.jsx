@@ -81,25 +81,25 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="p-6 shadow-soft">
-          <p className="text-sm text-muted-foreground mb-2">Total Tasks</p>
-          <p className="text-3xl font-bold text-foreground">{tasks.length}</p>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+        <Card className="p-4 md:p-6 shadow-soft">
+          <p className="text-xs md:text-sm text-muted-foreground mb-2">Total Tasks</p>
+          <p className="text-2xl md:text-3xl font-bold text-foreground">{tasks.length}</p>
         </Card>
-        <Card className="p-6 shadow-soft">
-          <p className="text-sm text-muted-foreground mb-2">Completed</p>
-          <p className="text-3xl font-bold text-success">
+        <Card className="p-4 md:p-6 shadow-soft">
+          <p className="text-xs md:text-sm text-muted-foreground mb-2">Completed</p>
+          <p className="text-2xl md:text-3xl font-bold text-success">
             {tasks.filter((t) => t.status === 'completed').length}
           </p>
         </Card>
-        <Card className="p-6 shadow-soft">
-          <p className="text-sm text-muted-foreground mb-2">Completion Rate</p>
-          <p className="text-3xl font-bold text-primary">{completionRate}%</p>
+        <Card className="p-4 md:p-6 shadow-soft">
+          <p className="text-xs md:text-sm text-muted-foreground mb-2">Completion Rate</p>
+          <p className="text-2xl md:text-3xl font-bold text-primary">{completionRate}%</p>
           <Progress value={completionRate} className="mt-2" />
         </Card>
-        <Card className="p-6 shadow-soft">
-          <p className="text-sm text-muted-foreground mb-2">Avg Energy</p>
-          <p className="text-3xl font-bold text-secondary">
+        <Card className="p-4 md:p-6 shadow-soft">
+          <p className="text-xs md:text-sm text-muted-foreground mb-2">Avg Energy</p>
+          <p className="text-2xl md:text-3xl font-bold text-secondary">
             {moodHistory.length > 0
               ? Math.round(
                   moodHistory.reduce((acc, m) => acc + m.energy, 0) / moodHistory.length
