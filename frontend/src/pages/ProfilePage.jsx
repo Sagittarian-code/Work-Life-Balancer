@@ -11,16 +11,21 @@ import useStore from '../store/useStore';
 import { toast } from 'sonner';
 
 export default function ProfilePage() {
-  const { user, isGuest, automationEnabled, toggleAutomation } = useStore();
+  const { user, isGuest, automationEnabled, toggleAutomation, updateUser } = useStore();
   const [formData, setFormData] = useState({
     name: user?.name || '',
     email: user?.email || '',
-    productivityStyle: 'calm',
+    productivityStyle: user?.productivityStyle || 'calm',
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // In a real app, this would update the user in the store
+    // Update user in the store - this will persist via Zustand
+    updateUser({
+      name: formData.name,
+      email: formData.email,
+      productivityStyle: formData.productivityStyle,
+    });
     toast.success('Profile updated successfully');
   };
 
