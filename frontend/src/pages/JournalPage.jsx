@@ -84,7 +84,7 @@ export default function JournalPage() {
                   exit={{ opacity: 0, x: -100 }}
                   layout
                 >
-                  <Card className="p-6 shadow-soft hover:shadow-medium transition-smooth">
+                  <Card className="p-4 md:p-6 shadow-soft hover:shadow-medium transition-smooth">
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-3 text-sm text-muted-foreground">
@@ -100,11 +100,33 @@ export default function JournalPage() {
                             })}
                           </span>
                         </div>
-                        <p className="text-foreground whitespace-pre-wrap leading-relaxed">
+                        <p className="text-foreground whitespace-pre-wrap leading-relaxed mb-4">
                           {entry.content}
                         </p>
+                        
+                        {/* Companion Response */}
+                        {entry.companionResponse && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                            className="mt-4 p-4 bg-gradient-calm rounded-lg border border-primary/20"
+                          >
+                            <div className="flex items-start gap-3">
+                              <Sparkles className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                              <div className="flex-1">
+                                <p className="text-sm font-medium text-primary mb-1">
+                                  Companion
+                                </p>
+                                <p className="text-sm text-foreground/90 leading-relaxed">
+                                  {entry.companionResponse}
+                                </p>
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
                       </div>
-                      <div className="flex gap-1">
+                      <div className="flex gap-1 flex-shrink-0">
                         <Button variant="ghost" size="icon" onClick={() => handleEdit(entry)}>
                           <Edit className="w-4 h-4" />
                         </Button>
