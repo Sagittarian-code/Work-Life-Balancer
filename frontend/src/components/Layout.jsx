@@ -37,9 +37,9 @@ export const Layout = () => {
       <div className="p-4 md:p-6 border-b border-border">
         <div className="flex items-center gap-3">
           <img
-            src="https://static.prod-images.emergentagent.com/jobs/bf2943b7-3896-49fc-9373-bd8f9077dc23/images/75077385fdf76cb6d1d613c19bb668bb24e5269cfe216977307e1f1d4ef8a09b.png"
+            src="https://customer-assets.emergentagent.com/job_balance-buddy-23/artifacts/udn3mqfq_WhatsApp%20Image%202025-12-29%20at%2018.16.18_c1681a27.jpg"
             alt="Work-Life Balancer Logo"
-            className="w-8 h-8 md:w-10 md:h-10"
+            className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover"
           />
           <div>
             <h1 className="text-base md:text-lg font-bold text-foreground">Work-Life</h1>
