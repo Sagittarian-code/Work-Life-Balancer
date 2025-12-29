@@ -101,3 +101,113 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Test the complete Work-Life Balancer application flow including auth, onboarding, dashboard, tasks, wellness, journal, and analytics pages"
+
+frontend:
+  - task: "Auth Page - Logo and Title Display"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/AuthPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test logo display and Continue as Guest functionality"
+
+  - task: "Onboarding Page - Mood Selector and Energy Slider"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/OnboardingPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test mood selection, energy slider, and completion flow"
+
+  - task: "Dashboard Page - Greeting and Stats Display"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/DashboardPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test greeting message, mood card, stats cards, and sidebar navigation"
+
+  - task: "Tasks Page - Task Creation and Management"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/TasksPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test task creation form, task list display, and task management"
+
+  - task: "Wellness Page - Breathing Exercise"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/WellnessPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test breathing exercise component with start/pause functionality"
+
+  - task: "Journal Page - Entry Creation and Display"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/JournalPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test journal entry creation, saving, and display with timestamps"
+
+  - task: "Analytics Page - Charts and Stats Display"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/AnalyticsPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "testing"
+        - comment: "Need to test charts display, task activity, energy trend, and stats cards"
+
+metadata:
+  created_by: "testing_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: true
+
+test_plan:
+  current_focus:
+    - "Auth Page - Logo and Title Display"
+    - "Onboarding Page - Mood Selector and Energy Slider"
+    - "Dashboard Page - Greeting and Stats Display"
+    - "Tasks Page - Task Creation and Management"
+    - "Wellness Page - Breathing Exercise"
+    - "Journal Page - Entry Creation and Display"
+    - "Analytics Page - Charts and Stats Display"
+  stuck_tasks: []
+  test_all: true
+  test_priority: "sequential"
+
+agent_communication:
+    - agent: "testing"
+    - message: "Starting comprehensive UI testing of Work-Life Balancer application. Will test complete flow from auth to all main features."
