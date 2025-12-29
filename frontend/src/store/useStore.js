@@ -96,6 +96,39 @@ const useStore = create(
         }));
       },
 
+      // Reminder Actions
+      addReminder: (reminder) => {
+        const newReminder = {
+          id: Date.now().toString(),
+          ...reminder,
+          createdAt: Date.now(),
+          enabled: true,
+        };
+        set((state) => ({ reminders: [...state.reminders, newReminder] }));
+      },
+
+      updateReminder: (id, updates) => {
+        set((state) => ({
+          reminders: state.reminders.map((reminder) =>
+            reminder.id === id ? { ...reminder, ...updates } : reminder
+          ),
+        }));
+      },
+
+      deleteReminder: (id) => {
+        set((state) => ({
+          reminders: state.reminders.filter((reminder) => reminder.id !== id),
+        }));
+      },
+
+      toggleReminder: (id) => {
+        set((state) => ({
+          reminders: state.reminders.map((reminder) =>
+            reminder.id === id ? { ...reminder, enabled: !reminder.enabled } : reminder
+          ),
+        }));
+      },
+
       // Get insights based on current data
       getInsights: () => {
         const state = get();
