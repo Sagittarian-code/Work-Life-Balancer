@@ -47,60 +47,59 @@ export default function ProfilePage() {
           Personal Information
         </h3>
 
-        {isGuest ? (
-          <div className="text-center py-8">
-            <p className="text-muted-foreground mb-4">
-              You're using a guest account. Your data is stored locally.
-            </p>
-            <Button>Create Account to Save Data</Button>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="name">Name</Label>
+            <Input
+              id="name"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              placeholder="Your name"
+            />
           </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
+
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
+            <div className="flex gap-2">
+              <Mail className="w-5 h-5 text-muted-foreground mt-2" />
               <Input
-                id="name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="Your name"
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                placeholder="your@email.com"
+                className="flex-1"
               />
             </div>
+          </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <div className="flex gap-2">
-                <Mail className="w-5 h-5 text-muted-foreground mt-2" />
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="your@email.com"
-                  className="flex-1"
-                />
-              </div>
+          <div className="space-y-2">
+            <Label>Productivity Style</Label>
+            <Select
+              value={formData.productivityStyle}
+              onValueChange={(value) => setFormData({ ...formData, productivityStyle: value })}
+            >
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="calm">Calm - Gentle reminders</SelectItem>
+                <SelectItem value="focused">Focused - Regular check-ins</SelectItem>
+                <SelectItem value="flexible">Flexible - Adaptive approach</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {isGuest && (
+            <div className="bg-muted/50 p-3 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                <strong>Guest Mode:</strong> Your profile changes are saved locally in your browser.
+              </p>
             </div>
+          )}
 
-            <div className="space-y-2">
-              <Label>Productivity Style</Label>
-              <Select
-                value={formData.productivityStyle}
-                onValueChange={(value) => setFormData({ ...formData, productivityStyle: value })}
-              >
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="calm">Calm - Gentle reminders</SelectItem>
-                  <SelectItem value="focused">Focused - Regular check-ins</SelectItem>
-                  <SelectItem value="flexible">Flexible - Adaptive approach</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <Button type="submit" className="w-full">Save Changes</Button>
-          </form>
-        )}
+          <Button type="submit" className="w-full">Save Changes</Button>
+        </form>
       </Card>
 
       {/* Automation Settings */}
