@@ -26,6 +26,9 @@ const useStore = create(
       // Journal State
       journalEntries: [],
 
+      // Reminders State
+      reminders: [],
+
       // Actions
       setUser: (user) => set({ user, isAuthenticated: true, isGuest: false }),
       updateUser: (updates) => set((state) => ({ user: { ...state.user, ...updates } })),
