@@ -17,11 +17,11 @@ export default function OnboardingPage() {
   };
 
   const handleComplete = () => {
-    navigate('/dashboard');
+    navigate('/dashboard', { replace: true });
   };
 
   const handleSkip = () => {
-    navigate('/dashboard');
+    navigate('/dashboard', { replace: true });
   };
 
   if (step === 0) {
