@@ -74,7 +74,7 @@ export default function DashboardPage() {
       {/* Header */}
       <motion.div variants={item}>
         <h1 className="text-4xl font-bold text-foreground mb-2">
-          {getGreeting()}, {isGuest ? 'Friend' : user?.name || 'there'}!
+          {getGreeting()}, {isGuest ? (user?.name || 'Friend') : user?.name || 'there'}!
         </h1>
         <p className="text-lg text-muted-foreground">
           Let's make today productive and balanced
