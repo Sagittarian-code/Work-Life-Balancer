@@ -20,7 +20,8 @@ export default function AuthPage() {
     // Mock authentication
     setUser({ name: 'User', email: loginData.email });
     toast.success('Welcome back!');
-    navigate('/onboarding');
+    // Use replace to ensure navigation works
+    setTimeout(() => navigate('/onboarding', { replace: true }), 100);
   };
 
   const handleSignup = (e) => {
@@ -28,13 +29,13 @@ export default function AuthPage() {
     // Mock registration
     setUser({ name: signupData.name, email: signupData.email });
     toast.success('Account created successfully!');
-    navigate('/onboarding');
+    setTimeout(() => navigate('/onboarding', { replace: true }), 100);
   };
 
   const handleGuest = () => {
     setGuest();
     toast.success('Continuing as guest');
-    navigate('/onboarding');
+    setTimeout(() => navigate('/onboarding', { replace: true }), 100);
   };
 
   return (
