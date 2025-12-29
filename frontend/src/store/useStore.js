@@ -28,6 +28,7 @@ const useStore = create(
 
       // Actions
       setUser: (user) => set({ user, isAuthenticated: true, isGuest: false }),
+      updateUser: (updates) => set((state) => ({ user: { ...state.user, ...updates } })),
       setGuest: () => set({ isGuest: true, isAuthenticated: true }),
       logout: () => set({ user: null, isAuthenticated: false, isGuest: false }),
 
