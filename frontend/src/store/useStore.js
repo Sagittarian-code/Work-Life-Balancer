@@ -3,16 +3,11 @@ import { persist } from 'zustand/middleware';
 
 const useStore = create(
   persist(
-    (set, get) => {
-      // Check localStorage on initialization
-      const stored = localStorage.getItem('work-life-balancer-storage');
-      const initialUser = stored ? JSON.parse(stored).state?.user : null;
-      
-      return {
-        // User State - Use stored name if available
-        user: initialUser || null,
-        isAuthenticated: false,
-        isGuest: false,
+    (set, get) => ({
+      // User State
+      user: null,
+      isAuthenticated: false,
+      isGuest: false,
 
       // Mood State
       currentMood: {
