@@ -35,10 +35,29 @@ const useStore = create(
       reminders: [],
 
       // Actions
-      setUser: (user) => set({ user, isAuthenticated: true, isGuest: false }),
-      updateUser: (updates) => set((state) => ({ user: { ...state.user, ...updates } })),
-      setGuest: () => set({ isGuest: true, isAuthenticated: true }),
-      logout: () => set({ user: null, isAuthenticated: false, isGuest: false }),
+      setUser: (user) => {
+        // Merge with existing user data if available
+        set((state) => ({
+          user: { ...state.user, ...user },
+          isAuthenticated: true,
+          isGuest: false,
+        }));
+      },
+      updateUser: (updates) => {
+        set((state) => ({
+          user: { ...state.user, ...updates },
+        }));
+      },
+      setGuest: () => set((state) => ({ 
+        isGuest: true, 
+        isAuthenticated: true,
+        // Keep user data if it exists (for returning guests)
+        user: state.user || { name: 'Guest User' }
+      })),
+      logout: () => {
+        // Don't clear user data on logout - keep it for next session
+        set({ isAuthenticated: false, isGuest: false });
+      },
 
       updateMood: (mood) => {
         const newMood = { ...mood, timestamp: Date.now() };
