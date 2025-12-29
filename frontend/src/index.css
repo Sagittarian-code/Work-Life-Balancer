@@ -127,6 +127,14 @@
     background: var(--gradient-card);
   }
   
+  .bg-gradient-water {
+    background: var(--gradient-water);
+  }
+  
+  .bg-gradient-forest {
+    background: var(--gradient-forest);
+  }
+  
   .shadow-soft {
     box-shadow: var(--shadow-soft);
   }
