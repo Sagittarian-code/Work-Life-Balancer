@@ -190,38 +190,38 @@ export default function DashboardPage() {
 
       {/* Quick Actions */}
       <motion.div variants={item}>
-        <h2 className="text-2xl font-bold text-foreground mb-4">Quick Actions</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">Quick Actions</h2>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           <Button
             variant="outline"
-            className="h-24 flex-col gap-2"
+            className="h-20 md:h-24 flex-col gap-2 text-sm md:text-base"
             onClick={() => navigate('/tasks')}
           >
-            <CheckCircle className="w-6 h-6" />
+            <CheckCircle className="w-5 h-5 md:w-6 md:h-6" />
             <span>Manage Tasks</span>
           </Button>
           <Button
             variant="outline"
-            className="h-24 flex-col gap-2"
+            className="h-20 md:h-24 flex-col gap-2 text-sm md:text-base"
             onClick={() => navigate('/journal')}
           >
-            <Calendar className="w-6 h-6" />
+            <Calendar className="w-5 h-5 md:w-6 md:h-6" />
             <span>Write Journal</span>
           </Button>
           <Button
             variant="outline"
-            className="h-24 flex-col gap-2"
+            className="h-20 md:h-24 flex-col gap-2 text-sm md:text-base"
             onClick={() => navigate('/wellness')}
           >
-            <Smile className="w-6 h-6" />
+            <Smile className="w-5 h-5 md:w-6 md:h-6" />
             <span>Wellness</span>
           </Button>
           <Button
             variant="outline"
-            className="h-24 flex-col gap-2"
+            className="h-20 md:h-24 flex-col gap-2 text-sm md:text-base"
             onClick={() => navigate('/analytics')}
           >
-            <TrendingUp className="w-6 h-6" />
+            <TrendingUp className="w-5 h-5 md:w-6 md:h-6" />
             <span>Analytics</span>
           </Button>
         </div>
