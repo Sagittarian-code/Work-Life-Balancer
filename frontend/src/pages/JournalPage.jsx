@@ -10,7 +10,7 @@ import { generateCompanionResponse } from '../utils/journalCompanion';
 import { toast } from 'sonner';
 
 export default function JournalPage() {
-  const { journalEntries, addJournalEntry, updateJournalEntry, deleteJournalEntry } = useStore();
+  const { journalEntries, addJournalEntry, updateJournalEntry, deleteJournalEntry, currentMood } = useStore();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingEntry, setEditingEntry] = useState(null);
   const [content, setContent] = useState('');
@@ -23,7 +23,14 @@ export default function JournalPage() {
       updateJournalEntry(editingEntry.id, { content });
       toast.success('Journal entry updated');
     } else {
-      addJournalEntry({ content });
+      // Generate companion response
+      const companionResponse = generateCompanionResponse(
+        content,
+        currentMood.mood,
+        currentMood.energy
+      );
+      
+      addJournalEntry({ content, companionResponse });
       toast.success('Journal entry saved');
     }
 
