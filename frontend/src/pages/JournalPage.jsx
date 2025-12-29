@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Edit, Trash2, Calendar } from 'lucide-react';
+import { Plus, Edit, Trash2, Calendar, Sparkles } from 'lucide-react';
 import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Textarea } from '../components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../components/ui/dialog';
 import useStore from '../store/useStore';
+import { generateCompanionResponse } from '../utils/journalCompanion';
 import { toast } from 'sonner';
 
 export default function JournalPage() {
