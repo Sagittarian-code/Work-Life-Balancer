@@ -65,6 +65,7 @@ export const TaskDialog = ({ open, onClose, task }) => {
               onChange={(e) => handleChange('description', e.target.value)}
               placeholder="Add details about this task..."
               rows={3}
+              className="resize-none"
             />
           </div>
 
