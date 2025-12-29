@@ -5,9 +5,9 @@ import { Card } from './ui/card';
 import { Button } from './ui/button';
 
 const BREATHING_PHASES = [
-  { name: 'Inhale', duration: 4000, text: 'Breathe in...', color: 'hsl(150 60% 60%)' },
-  { name: 'Hold', duration: 2000, text: 'Hold...', color: 'hsl(270 60% 65%)' },
-  { name: 'Exhale', duration: 6000, text: 'Breathe out...', color: 'hsl(200 70% 60%)' },
+  { name: 'Inhale', duration: 4000, text: 'Breathe in...', color: 'hsl(175 65% 55%)' }, // Turquoise water
+  { name: 'Hold', duration: 2000, text: 'Hold...', color: 'hsl(195 85% 55%)' }, // Ocean blue
+  { name: 'Exhale', duration: 6000, text: 'Breathe out...', color: 'hsl(160 55% 50%)' }, // Forest green
 ];
 
 export const BreathingExercise = () => {
