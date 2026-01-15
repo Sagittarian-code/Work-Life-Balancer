@@ -5,41 +5,42 @@ import { Card } from './ui/card';
 import { Button } from './ui/button';
 import { Slider } from './ui/slider';
 
+// Each sound has a UNIQUE audio source
 const sounds = [
   {
     id: 'rain',
     name: 'Rain',
     icon: CloudRain,
     color: 'hsl(200 70% 50%)',
-    url: 'https://assets.mixkit.co/active_storage/sfx/2390/2390-preview.mp3', // Rain sound
+    url: 'https://cdn.pixabay.com/audio/2022/03/10/audio_4a304ef0ac.mp3', // Rain sound
   },
   {
     id: 'ocean',
     name: 'Ocean Waves',
     icon: Waves,
     color: 'hsl(195 85% 55%)',
-    url: 'https://assets.mixkit.co/active_storage/sfx/2390/2390-preview.mp3', // Ocean waves
+    url: 'https://cdn.pixabay.com/audio/2022/06/07/audio_49f5f26768.mp3', // Ocean waves
   },
   {
     id: 'forest',
     name: 'Forest',
     icon: Trees,
     color: 'hsl(160 55% 50%)',
-    url: 'https://assets.mixkit.co/active_storage/sfx/2390/2390-preview.mp3', // Forest ambience
+    url: 'https://cdn.pixabay.com/audio/2022/03/10/audio_c610232532.mp3', // Forest birds
   },
   {
     id: 'wind',
     name: 'Soft Wind',
     icon: Wind,
     color: 'hsl(180 45% 60%)',
-    url: 'https://assets.mixkit.co/active_storage/sfx/2390/2390-preview.mp3', // Wind sound
+    url: 'https://cdn.pixabay.com/audio/2022/03/10/audio_29ab4f6a84.mp3', // Wind sound
   },
   {
     id: 'whitenoise',
     name: 'White Noise',
     icon: Radio,
     color: 'hsl(200 20% 60%)',
-    url: 'https://assets.mixkit.co/active_storage/sfx/2390/2390-preview.mp3', // White noise
+    url: 'https://cdn.pixabay.com/audio/2023/03/24/audio_a3c38c7c89.mp3', // White noise
   },
 ];
 
@@ -58,16 +59,18 @@ export const AmbientSounds = () => {
   }, []);
 
   useEffect(() => {
-    // Pause when component unmounts (user leaves page)
+    // Cleanup: Pause and remove audio when component unmounts (user leaves page)
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
+        audioRef.current = null;
       }
+      setIsPlaying(false);
     };
   }, []);
 
   useEffect(() => {
-    // Update audio volume
+    // Update audio volume when slider changes
     if (audioRef.current) {
       audioRef.current.volume = volume[0] / 100;
     }
@@ -77,7 +80,7 @@ export const AmbientSounds = () => {
     // Stop current sound if playing
     if (audioRef.current) {
       audioRef.current.pause();
-      audioRef.current.currentTime = 0;
+      audioRef.current = null;
     }
     
     setSelectedSound(soundId);
@@ -88,24 +91,39 @@ export const AmbientSounds = () => {
   const handlePlayPause = () => {
     if (!selectedSound) return;
 
+    const sound = sounds.find((s) => s.id === selectedSound);
+    if (!sound) return;
+
     if (isPlaying) {
-      audioRef.current?.pause();
-    } else {
-      const sound = sounds.find((s) => s.id === selectedSound);
-      if (sound) {
-        // Create or update audio element
-        if (!audioRef.current) {
-          audioRef.current = new Audio(sound.url);
-          audioRef.current.loop = true;
-          audioRef.current.volume = volume[0] / 100;
-        } else {
-          audioRef.current.src = sound.url;
-        }
-        audioRef.current.play();
+      // Pause current sound
+      if (audioRef.current) {
+        audioRef.current.pause();
       }
+      setIsPlaying(false);
+    } else {
+      // Play selected sound
+      // CRITICAL: Always create new Audio instance with correct URL
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+      
+      // Create new audio with the selected sound's URL
+      audioRef.current = new Audio(sound.url);
+      audioRef.current.loop = true;
+      audioRef.current.volume = volume[0] / 100;
+      
+      // Handle loading and play
+      audioRef.current.addEventListener('canplaythrough', () => {
+        audioRef.current.play().catch((error) => {
+          console.error('Error playing audio:', error);
+          setIsPlaying(false);
+        });
+      });
+      
+      audioRef.current.load();
+      setIsPlaying(true);
     }
-    
-    setIsPlaying(!isPlaying);
   };
 
   const handleStop = () => {
