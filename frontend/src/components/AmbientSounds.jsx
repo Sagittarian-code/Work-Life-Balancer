@@ -12,35 +12,35 @@ const sounds = [
     name: 'Rain',
     icon: CloudRain,
     color: 'hsl(200 70% 50%)',
-    url: 'https://cdn.pixabay.com/audio/2022/03/10/audio_4a304ef0ac.mp3', // Rain sound
+    url: 'https://cdn.pixabay.com/audio/2022/03/10/audio_4a304ef0ac.mp3',
   },
   {
     id: 'ocean',
     name: 'Ocean Waves',
     icon: Waves,
     color: 'hsl(195 85% 55%)',
-    url: 'https://cdn.pixabay.com/audio/2022/06/07/audio_49f5f26768.mp3', // Ocean waves
+    url: 'https://cdn.pixabay.com/audio/2022/06/07/audio_49f5f26768.mp3',
   },
   {
     id: 'forest',
     name: 'Forest',
     icon: Trees,
     color: 'hsl(160 55% 50%)',
-    url: 'https://cdn.pixabay.com/audio/2022/03/10/audio_c610232532.mp3', // Forest birds
+    url: 'https://cdn.pixabay.com/audio/2022/03/10/audio_c610232532.mp3',
   },
   {
     id: 'wind',
     name: 'Soft Wind',
     icon: Wind,
     color: 'hsl(180 45% 60%)',
-    url: 'https://cdn.pixabay.com/audio/2022/03/10/audio_29ab4f6a84.mp3', // Wind sound
+    url: 'https://cdn.pixabay.com/audio/2022/03/10/audio_29ab4f6a84.mp3',
   },
   {
     id: 'whitenoise',
     name: 'White Noise',
     icon: Radio,
     color: 'hsl(200 20% 60%)',
-    url: 'https://cdn.pixabay.com/audio/2023/03/24/audio_a3c38c7c89.mp3', // White noise
+    url: 'https://cdn.pixabay.com/audio/2023/03/24/audio_a3c38c7c89.mp3',
   },
 ];
 
@@ -51,19 +51,22 @@ export const AmbientSounds = () => {
   const audioRef = useRef(null);
 
   useEffect(() => {
+    // Create audio element once on mount
+    audioRef.current = new Audio();
+    audioRef.current.loop = true;
+    audioRef.current.volume = volume[0] / 100;
+
     // Load last selected sound from localStorage (but don't auto-play)
     const lastSound = localStorage.getItem('lastAmbientSound');
     if (lastSound) {
       setSelectedSound(lastSound);
     }
-  }, []);
 
-  useEffect(() => {
-    // Cleanup: Pause and remove audio when component unmounts (user leaves page)
+    // Cleanup on unmount (user leaves page)
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
-        audioRef.current = null;
+        audioRef.current.src = '';
       }
       setIsPlaying(false);
     };
@@ -76,61 +79,69 @@ export const AmbientSounds = () => {
     }
   }, [volume]);
 
+  // CRITICAL: Direct user interaction to play sound
   const handleSoundSelect = (soundId) => {
-    // Stop current sound if playing
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current = null;
-    }
-    
+    const sound = sounds.find((s) => s.id === soundId);
+    if (!sound || !audioRef.current) return;
+
+    // Stop current audio
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
+
+    // Update state
     setSelectedSound(soundId);
-    setIsPlaying(false);
     localStorage.setItem('lastAmbientSound', soundId);
+
+    // Update audio source and play (synchronous in user interaction)
+    audioRef.current.src = sound.url;
+    audioRef.current.load();
+    
+    // Play audio - this MUST be in the same call stack as the click
+    audioRef.current.play()
+      .then(() => {
+        setIsPlaying(true);
+      })
+      .catch((error) => {
+        console.error('Audio playback failed:', error);
+        setIsPlaying(false);
+      });
   };
 
   const handlePlayPause = () => {
-    if (!selectedSound) return;
-
-    const sound = sounds.find((s) => s.id === selectedSound);
-    if (!sound) return;
+    if (!audioRef.current || !selectedSound) return;
 
     if (isPlaying) {
-      // Pause current sound
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
+      // Pause
+      audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      // Play selected sound
-      // CRITICAL: Always create new Audio instance with correct URL
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
+      // Resume or play
+      const sound = sounds.find((s) => s.id === selectedSound);
+      if (!sound) return;
+
+      // Ensure correct source is loaded
+      if (audioRef.current.src !== sound.url) {
+        audioRef.current.src = sound.url;
+        audioRef.current.load();
       }
-      
-      // Create new audio with the selected sound's URL
-      audioRef.current = new Audio(sound.url);
-      audioRef.current.loop = true;
-      audioRef.current.volume = volume[0] / 100;
-      
-      // Handle loading and play
-      audioRef.current.addEventListener('canplaythrough', () => {
-        audioRef.current.play().catch((error) => {
-          console.error('Error playing audio:', error);
+
+      // Play - direct user interaction
+      audioRef.current.play()
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch((error) => {
+          console.error('Audio playback failed:', error);
           setIsPlaying(false);
         });
-      });
-      
-      audioRef.current.load();
-      setIsPlaying(true);
     }
   };
 
   const handleStop = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    }
+    if (!audioRef.current) return;
+
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
     setIsPlaying(false);
   };
 
@@ -144,11 +155,11 @@ export const AmbientSounds = () => {
             Ambient Sounds
           </h3>
           <p className="text-sm md:text-base text-muted-foreground">
-            Choose a calming sound to enhance your focus
+            Click a sound to play it instantly
           </p>
         </div>
 
-        {/* Sound Selection */}
+        {/* Sound Selection - Direct play on click */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
           {sounds.map((sound) => {
             const Icon = sound.icon;
@@ -251,6 +262,7 @@ export const AmbientSounds = () => {
             <strong>Tips:</strong>
           </p>
           <ul className="list-disc list-inside space-y-1 text-xs md:text-sm">
+            <li>Click any sound icon to play it instantly</li>
             <li>Sound will pause when you leave this page</li>
             <li>Use headphones for the best experience</li>
             <li>Combine with breathing exercises for deeper relaxation</li>
